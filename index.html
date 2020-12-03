@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mondrian</title>
+    <meta name="viewport" content="width=device-width, height=device-height"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="body">
+<header class="header" id="Mondrian">Mondrian</header>
+<div class="colors flex--middle">
+    <input class="input flex--middle" id="color1" type="color" value="#ffffff"/>
+    <input class="input flex--middle" id="color2" type="color" value="#000000"/>
+    <input class="input flex--middle" id="color3" type="color" value="#be1e2d"/>
+    <input class="input flex--middle" id="color4" type="color" value="#ffde17"/>
+    <input class="input flex--middle" id="color5" type="color" value="#21409a"/>
+</div>
+<p class="about flex--middle">Choose colors and their distribution,<br>
+    set up hyperparemetres<br>
+    and generate picture
+</p>
+<div class="distribution flex--middle">
+    <input class="input flex--middle" id="distribution1" type="number" value="19"/>
+    <input class="input flex--middle" id="distribution2" type="number" value="1"/>
+    <input class="input flex--middle" id="distribution3" type="number" value="6"/>
+    <input class="input flex--middle" id="distribution4" type="number" value="6"/>
+    <input class="input flex--middle" id="distribution5" type="number" value="6"/>
+</div>
+<svg version="1.1"
+     baseProfile="full"
+     width="500" height="500"
+     xmlns="http://www.w3.org/2000/svg"
+     id="svg"
+     class="svg">
+    <rect width="100%" height="100%" fill="red"/>
+</svg>
+<div class="panel">
+    <div class="wrapper">
+        <label class="text" for="save-color-input">Save color chance (%)</label>
+        <input class="input" id="save-color-input" min=0 max=100 step="1" type="number" value="10"/>
+    </div>
+    <div class="wrapper">
+        <label class="text" for="stop-input">Stop chance (%)</label>
+        <input class="input" id="stop-input" min=0 max=100 step="1" type="number" value="20"/>
+    </div>
+    <div class="wrapper">
+        <label class="text" for="min-depth-input">Min depth</label>
+        <input class="input" id="min-depth-input" min=0 max=100 step="1" type="number" value="2"/>
+    </div>
+    <div class="wrapper">
+        <label class="text" for="max-depth-input">Max depth</label>
+        <input class="input" id="max-depth-input" min=0 max=100 step="1" type="number" value="4"/>
+    </div>
+    <div class="wrapper">
+        <label class="text" for="elongation-input">Elongation coefficient</label>
+        <input class="input" id="elongation-input" min=0 max=1000 step="1" type="number" value="4"/>
+    </div>
+    <div class="wrapper">
+        <label class="text" for="round-rate-input">Split round</label>
+        <input class="input" id="round-rate-input" min=1 max=1000 step="1" type="number" value="1"/>
+    </div>
+    <div class="wrapper">
+        <label class="text" for="margin-rate-input">Split min margin (%)</label>
+        <input class="input" id="margin-rate-input" min=1 max=100 step="1" type="number" value="4"/>
+    </div>
+    <div class="wrapper">
+        <input id="render" class="input" type="button" value="Render">
+        <input id="save" class="input" type="button" value="Save">
+    </div>
+</div>
+</body>
+<script src="lib.js"></script>
+<script src="main.js"></script>
+</html>

@@ -1,0 +1,176 @@
+.body {
+    margin                : 0;
+    display               : grid;
+    grid-template         : "header colors"
+                   "about distribution"
+                   "svg panel";
+    grid-template-rows    : 10vh 8vh 82vh;
+    grid-template-columns : 50vw 50vw;
+    font-family           : "Noto Sans JP", sans-serif;
+}
+
+.flex--middle {
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+}
+
+.header,
+.colors,
+.about,
+.distribution {
+    background-color : black;
+    color            : white;
+}
+
+.padding {
+    padding-left : 15px;
+}
+
+.header {
+    grid-area   : header;
+    font-size   : calc(4vh + 3vw);
+    font-family : "Lato", sans-serif;
+}
+
+.colors {
+    grid-area : colors;
+}
+
+.about {
+    grid-area       : about;
+    margin          : 0;
+    text-align      : right;
+    flex-flow       : row-reverse wrap-reverse;
+    justify-content : left;
+    font-size: calc(0.7vh + 0.6vw);
+}
+
+.distribution {
+    grid-area : distribution;
+}
+
+.colors .input,
+.distribution .input {
+    margin-left : 3.5vw;
+}
+
+.distribution .input {
+    width : 5vw;
+}
+
+.svg {
+    grid-area    : svg;
+    width        : 500px;
+    height       : 500px;
+    padding-top  : calc((90vh - 500px) / 2);
+    padding-left : calc((50vw - 500px) / 2);
+}
+
+.panel {
+    grid-area             : panel;
+    padding               : 2vw 5vw;
+    background-color      : gold;
+    display               : flex;
+    flex-direction        : column;
+    justify-content       : space-between;
+    grid-template-columns : 30vw 10vw;
+}
+
+.wrapper {
+    display         : flex;
+    justify-content : space-between;
+    align-items     : center;
+}
+
+.text {
+    font-size : calc(1vh + 1vw);
+}
+
+.text,
+.input {
+    height : 50px;
+}
+
+.input {
+    background-color : #c7d0de;
+    font-size        : calc(1vh + 1vw);
+    border-radius    : 5px;
+    border-color     : #dae4fa;
+    color            : #555;
+    text-align       : center;
+    margin-left      : 5vw;
+}
+
+.input:focus {
+    background-color : #cdd8ea;
+    caret-color      : transparent;
+}
+
+@media all and (max-width : 1000px) {
+    .header {
+        text-align : center;
+        font-size  : calc(3vh + 3vw);
+    }
+
+    .body {
+        grid-template         : "header"
+                                "about"
+                                "colors"
+                                "distribution"
+                                "svg"
+                                "panel";
+        grid-template-rows    : 8vh 7vh 60px 60px 550px;
+        grid-template-columns : 100vw;
+    }
+
+    .svg {
+        padding-left   : calc((100vw - 500px) / 2);
+        padding-top    : 25px;
+        padding-bottom : 25px;
+    }
+
+    .panel {
+        flex-direction : column-reverse;
+    }
+
+    .text {
+        height : 30px;
+        margin : 1vh;
+    }
+
+    .input {
+        height    : 35px;
+        font-size : 2vh;
+    }
+
+    .about {
+        text-align      : center;
+        font-size       : calc(1vw + 1vh);
+        align-items     : center;
+        justify-content : center;
+    }
+
+    .about br {
+        display : none;
+    }
+
+    .colors .input {
+        height : 50px;
+    }
+
+    .colors .input,
+    .distribution .input {
+        width : 10vw;
+    }
+
+    #render, #save {
+        height : 60px;
+    }
+}
+
+@media all and (max-width : 500px) {
+    .body {
+        grid-template-rows : 8vh 7vh 60px 60px calc(100vw + 50px);
+    }
+}
