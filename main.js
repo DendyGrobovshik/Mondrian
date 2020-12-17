@@ -53,8 +53,12 @@ function setHyperparameters() {
     hyps.saveColorChance = getIntegerByIdOrSetDefault("save-color-input");
     hyps.stopChance = getIntegerByIdOrSetDefault("stop-input");
     hyps.minDepth = getIntegerByIdOrSetDefault("min-depth-input");
-    hyps.maxDepth = getIntegerByIdOrSetDefault("max-depth-input");
-    hyps.elongationCoefficient = getIntegerByIdOrSetDefault("elongation-input");
+    let maxDepth = getIntegerByIdOrSetDefault("max-depth-input");
+    if (maxDepth > 10) {
+        maxDepth = 12;
+    }
+    hyps.maxDepth = maxDepth;
+    hyps.elongationCoefficient = getIntegerByIdOrSetDefault("elongation-input", 2);
     hyps.roundRate = getIntegerByIdOrSetDefault("round-rate-input", 1);
     hyps.marginRate = getIntegerByIdOrSetDefault("margin-rate-input", 1);
 }

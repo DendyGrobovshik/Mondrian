@@ -56,7 +56,7 @@ class Square {
         this.yLength = yLength;
         this.color = color;
         this.depth = depth;
-
+        // console.log(this.x, " ", this.y, " ", this.xLength, " ", this.yLength);
         this.isLeaf = true;
         this.children = [];
     }
@@ -74,6 +74,8 @@ class Square {
     createFragmentation(type = "HORIZONTAL") {
         // Stop criteria
         if (this.depth > hyps.maxDepth
+            || this.xLength < hyps.strokeSize
+            || this.yLength < hyps.strokeSize
             || this.xLength * hyps.elongationCoefficient < this.yLength
             || this.yLength * hyps.elongationCoefficient < this.xLength
             || (this.depth > hyps.minDepth && randomInteger(0, 100) < hyps.stopChance)) {
@@ -92,26 +94,22 @@ class Square {
         this.isLeaf = false;
         let xMiddle = this.x;
         let yMiddle = this.y;
-        let xEnd = this.xLength;
-        let yEnd = this.yLength;
         // Define boundary points
         if (type === "HORIZONTAL") {
             const minSpace = this.yLength / hyps.marginRate;
             yMiddle = randomInteger(this.y + minSpace, this.y + this.yLength - minSpace);
             yMiddle = roundMultiple(yMiddle, hyps.roundRate);
-            yEnd = yMiddle;
         } else if (type === "VERTICAL") {
             const minSpace = this.xLength / hyps.marginRate;
             xMiddle = randomInteger(this.x + minSpace, this.x + this.xLength - minSpace);
             xMiddle = roundMultiple(xMiddle, hyps.roundRate);
-            xEnd = xMiddle;
         }
         // Creating children
         this.children.push(new Square(
             this.x
             , this.y
-            , xEnd
-            , yEnd
+            , "HORIZONTAL" ? this.xLength : xMiddle - this.x
+            , "VERTICAL" ? this.yLength : yMiddle - this.y
             , color1, this.depth + 1));
 
         this.children.push(new Square(
