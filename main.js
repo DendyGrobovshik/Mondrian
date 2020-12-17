@@ -1,7 +1,6 @@
 "use strict";
 
 window.onload = function () {
-
     render();
     // Render button listener
     let renderButton = document.getElementById("render");
@@ -10,6 +9,10 @@ window.onload = function () {
     let saveButton = document.getElementById("save");
     saveButton.addEventListener("mousedown", saveSvg, false);
 }
+
+window.onresize = function (event) {
+    render();
+};
 
 function getNode(attributes) {
     let node = document.createElementNS("http://www.w3.org/2000/svg", "rect");
