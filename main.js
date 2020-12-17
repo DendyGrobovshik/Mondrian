@@ -22,39 +22,41 @@ function getNode(attributes) {
     return node
 }
 
-function setPalette() {
-    let color1 = document.getElementById("color1").value;
-    let color2 = document.getElementById("color2").value;
-    let color3 = document.getElementById("color3").value;
-    let color4 = document.getElementById("color4").value;
-    let color5 = document.getElementById("color5").value;
+function getIntegerByIdOrSetDefault(id, defaultValue = 0) {
+    let value = document.getElementById(id).value;
+    if (/^[0-9]+$/.test(value)) {
+        return parseInt(value);
+    } else {
+        document.getElementById(id).value = defaultValue;
+        return defaultValue;
+    }
+}
 
-    let distribution1 = parseInt(document.getElementById("distribution1").value);
-    let distribution2 = parseInt(document.getElementById("distribution2").value);
-    let distribution3 = parseInt(document.getElementById("distribution3").value);
-    let distribution4 = parseInt(document.getElementById("distribution4").value);
-    let distribution5 = parseInt(document.getElementById("distribution5").value);
+function getColorAndDistributionById(id) {
+    const color = document.getElementById("color" + id.toString()).value;
+    let distribution = getIntegerByIdOrSetDefault("distribution" + id.toString());
+    return [color, distribution];
+}
+
+function setPalette() {
+    let [color1, distribution1] = getColorAndDistributionById(1);
+    let [color2, distribution2] = getColorAndDistributionById(2);
+    let [color3, distribution3] = getColorAndDistributionById(3);
+    let [color4, distribution4] = getColorAndDistributionById(4);
+    let [color5, distribution5] = getColorAndDistributionById(5);
 
     palette.colors = [color1, color2, color3, color4, color5];
     palette.distribution = [distribution1, distribution2, distribution3, distribution4, distribution5];
 }
 
 function setHyperparameters() {
-    let saveColor = parseInt(document.getElementById("save-color-input").value);
-    let stopChance = parseInt(document.getElementById("stop-input").value);
-    let minDepth = parseInt(document.getElementById("min-depth-input").value);
-    let maxDepth = parseInt(document.getElementById("max-depth-input").value);
-    let elongationCoefficient = parseInt(document.getElementById("elongation-input").value);
-    let roundRate = parseInt(document.getElementById("round-rate-input").value);
-    let marginRate = parseInt(document.getElementById("margin-rate-input").value);
-
-    hyps.saveColorChance = saveColor;
-    hyps.stopChance = stopChance;
-    hyps.minDepth = minDepth;
-    hyps.maxDepth = maxDepth;
-    hyps.elongationCoefficient = elongationCoefficient;
-    hyps.roundRate = roundRate;
-    hyps.marginRate = marginRate;
+    hyps.saveColorChance = getIntegerByIdOrSetDefault("save-color-input");
+    hyps.stopChance = getIntegerByIdOrSetDefault("stop-input");
+    hyps.minDepth = getIntegerByIdOrSetDefault("min-depth-input");
+    hyps.maxDepth = getIntegerByIdOrSetDefault("max-depth-input");
+    hyps.elongationCoefficient = getIntegerByIdOrSetDefault("elongation-input");
+    hyps.roundRate = getIntegerByIdOrSetDefault("round-rate-input", 1);
+    hyps.marginRate = getIntegerByIdOrSetDefault("margin-rate-input", 1);
 }
 
 function render() {
